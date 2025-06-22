@@ -58,7 +58,7 @@ as being broken.
  this may help keep object count low, where you can continue to reap the benifits of manifold rendering.
  
  h < 3
- but Im pretty tired finding other ppls bugs. Ima go sleep.
+
 
 
 '''
