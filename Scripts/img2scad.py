@@ -25,7 +25,7 @@ from PIL import Image
 MIN_HEIGHT  = 2     # subtracts background noise
 PIXEL_SIZE  = 1.0   # mm per pixel (XY)
 MAX_HEIGHT  = 10.0  # max Z height (mm)
-DOWNSCALE   = 4     # skip every Nth pixel for performance 1=slow >1= faster / lower res
+DOWNSCALE   = 1     # skip every Nth pixel for performance 1=slow >1= faster / lower res
 
 
 def main() -> int:
@@ -69,7 +69,7 @@ def main() -> int:
     
     print("Gerneatiting 3mf now")
     sleep(2)   # just a wait for scad file gen completion 
-    cmd = ["openscad", "-o", str(output_3mf), str(output_scad)]
+    cmd = ["openscad","-O export-3mf/material-type=color", "-o", str(output_3mf), str(output_scad)]
     try:
         subprocess.run(cmd, check=True)
     except FileNotFoundError:
@@ -83,12 +83,8 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+"""
+Thanks for the helpful hints!
+https://github.com/openscad/openscad/issues/6522
 
-'''
-Despite having a newer version of openscad
-OpenSCAD version 2026.01.06
-
-where outputing a 3mf is an option, color output 
-is not supported. or maybe Im doing something wrong.  
-
-'''
+"""
